@@ -20,11 +20,11 @@ spec:
       - name: dentist
         image: ghcr.io/mohamedsalem66/dentist:0.1-SNAPSHOT
         ports:
-        - containerPort: 3000
+        - containerPort: 80
         readinessProbe:
           httpGet:
             path: /
-            port: 3000
+            port: 80
           initialDelaySeconds: 30
           periodSeconds: 30
 
@@ -37,6 +37,6 @@ metadata:
 spec:
   ports:
   - port: 80
-    targetPort: 3000
+    targetPort: 80
   selector:
     app: dentist
