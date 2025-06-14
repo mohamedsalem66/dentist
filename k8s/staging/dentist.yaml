@@ -1,0 +1,14 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dentist
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dentist
+  template:
+    spec:
+      containers:
+        - name: dentist
+          image: ghcr.io/mohamedsalem66/dentist:0.2-SNAPSHOT

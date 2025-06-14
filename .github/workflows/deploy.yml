@@ -59,11 +59,11 @@ jobs:
       - name: Calculate images
         run: |
           git status
-          export TAG_ELEMANA=$(git ls-files -s . | git hash-object --stdin)
+          export TAG_DENTIST=$(git ls-files -s . | git hash-object --stdin)
 
           cd k8s/${{github.event.inputs.ENV}}
 
-          kustomize edit set image ghcr.io/mohamedsalem66/elemana-admin=ghcr.io/mohamedsalem66/elemana-admin:$TAG_ELEMANA
+          kustomize edit set image ghcr.io/mohamedsalem66/dentist=ghcr.io/mohamedsalem66/dentist:$TAG_DENTIST
 
       - name: Annotate namespaces
         run: |

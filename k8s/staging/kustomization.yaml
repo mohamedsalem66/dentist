@@ -1,0 +1,12 @@
+bases:
+    - ../base
+
+namespace: dentist
+resources:
+    - namespace.yaml
+    - ingress.yaml
+    - regcred.yaml
+
+patchesStrategicMerge:
+    - dentist.yaml
+

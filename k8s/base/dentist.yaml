@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dentist
+  labels:
+    app: dentist
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dentist
+  template:
+    metadata:
+      labels:
+        app: dentist
+    spec:
+      imagePullSecrets:
+        - name: regcred
+      containers:
+      - name: dentist
+        image: ghcr.io/mohamedsalem66/dentist:0.1-SNAPSHOT
+        ports:
+        - containerPort: 3000
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 30
+          periodSeconds: 30
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: dentist
+spec:
+  ports:
+  - port: 80
+    targetPort: 3000
+  selector:
+    app: dentist
